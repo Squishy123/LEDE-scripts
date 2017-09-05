@@ -1,4 +1,6 @@
 #!/bin/bash
+# Script for setting up extroot with USB in LEDE
+# @author: Christian Wang
 clear
 
 echo "WELCOME TO EXTROOT CONFIG"
