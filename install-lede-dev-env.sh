@@ -2,7 +2,6 @@
 # Script for installing and setting up an LEDE Development Environment
 # that is compatible with custom piratebox feeds
 # @author: Christian Wang
-
 clear
 
 echo "WELCOME TO LEDE-DEV-ENV SETUP"
@@ -20,20 +19,21 @@ while true; do
   esac
 done
 
-echo "Please enter the path you want to install the directory in"
-read FILE_PATH
-
-cd $FILE_PATH
-
 echo "Cloning LEDE-SOURCE..."
 git clone https://git.lede-project.org/source.git lede
 
 cd lede
 
+echo "Updating feeds..."
+./scripts/feeds update -a
+
+echo "Installing feeds..."
+./scripts/feeds install -a
+
 echo "Cloning Piratebox Feeds..."
 git clone https://github.com/PirateBox-Dev/openwrt-piratebox-feed.git piratebox-feed
 
-cd piratebox-feeds
+cd piratebox-feed
 git checkout LEDE_adjustments
 
 cd ..
@@ -41,11 +41,11 @@ echo "Making changes to feeds.conf..."
 cp  feeds.conf.default feeds.conf
 echo "src-link piratebox piratebox-feed" >> feeds.conf
 
-echo "Updating feeds..."
-./scripts/feeds update -a
+echo "Updating piratebox feed..."
+./scripts/feeds update piratebox
 
-echo "Installing feeds..."
-./scripts/feeds install -a
+echo "Installing piratebox feed..."
+./scripts/feeds install -p piratebox
 
 make defconfig
 
