@@ -19,7 +19,7 @@ while true; do
     echo "CONNECTING TO ROUTER"
     echo "COPYING OVER FIRMWARE FILE"
     scp 'original.bin' root@192.168.1.1:/tmp
-    ssh root@192.168.1.1 'sysupgrade -F /tmp/original.bin'
+    ssh root@192.168.1.1 'sysupgrade -n -F /tmp/original.bin'
     exit
     break;;
     [Nn]* ) break;;
