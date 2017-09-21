@@ -17,8 +17,8 @@ while true; do
     [Yy]* )
     echo "CONNECTING TO ROUTER"
     echo "COPYING OVER FIRMWARE FILE"
-    scp $firmware root@$(IP):/tmp
-    ssh root@$(IP) 'sysupgrade -n -F /tmp/$firmware'
+    scp $firmware root@$IP:/tmp
+    ssh root@$IP 'sysupgrade -n -F /tmp/$firmware'
     exit
     break;;
     [Nn]* ) break;;
